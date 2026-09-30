@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kampmann Heidelberg — Redesign-Entwurf</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c1717; --paper:#ffffff; --bone:#f0f0f0; --mist:#a9aea9;
+  --sans:'Inter',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --s6:6px; --s12:12px; --s18:18px; --s24:24px; --s30:30px; --s36:36px; --s60:60px; --s90:90px; --s120:120px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-weight:400;font-size:14px;line-height:1.45;letter-spacing:.21px;
+}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+.u{font-size:11px;line-height:1.35;letter-spacing:.33px;text-transform:uppercase}
+.cap{font-size:11px;line-height:1.35;letter-spacing:.33px}
+h1,h2,h3{font-weight:400;margin:0}
+h2{font-size:20px;line-height:1.15;letter-spacing:.3px}
+h3{font-size:18px;line-height:1.45;letter-spacing:.27px}
+.pad{padding-left:var(--s24);padding-right:var(--s24)}
+section{padding-top:var(--s90);padding-bottom:var(--s90)}
+@media (max-width:760px){section{padding-top:var(--s60);padding-bottom:var(--s60)}}
+
+/* draft note */
+.draft{background:var(--bone);padding:var(--s12) var(--s24);text-align:center}
+
+/* announcement */
+.ann{background:var(--mist);padding:var(--s12) var(--s24);display:grid;grid-template-columns:1fr auto 1fr;gap:var(--s18);align-items:center}
+.ann span:first-child{text-align:left}
+.ann span:last-child{text-align:right}
+@media (max-width:760px){.ann{grid-template-columns:1fr;text-align:center}.ann span{text-align:center!important}}
+
+/* nav */
+header{position:sticky;top:0;background:var(--paper);z-index:5;padding:var(--s18) var(--s24);display:flex;align-items:baseline;justify-content:space-between;gap:var(--s24)}
+.brand{font-size:14px;letter-spacing:3px;text-transform:uppercase;text-decoration:none}
+nav ul{list-style:none;display:flex;gap:var(--s24);margin:0;padding:0}
+nav a{text-decoration:none}
+nav a:hover{text-decoration:underline;text-underline-offset:3px}
+.util{display:flex;gap:var(--s18)}
+@media (max-width:860px){nav,.util{display:none}}
+
+/* hero */
+.hero figure{margin:0}
+.hero .frame{aspect-ratio:auto;width:100%;height:78vh;min-height:420px}
+.hero figcaption{padding:var(--s18) var(--s24) 0;display:grid;grid-template-columns:1fr auto;gap:var(--s12);align-items:end}
+@media (max-width:760px){.hero figcaption{grid-template-columns:1fr}.hero .frame{height:62vh}}
+.lede{font-size:18px;line-height:1.45;letter-spacing:.27px;max-width:46ch}
+
+/* grids */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s6)}
+@media (max-width:860px){.grid3{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.grid3,.grid2{grid-template-columns:1fr}}
+figure{margin:0}
+figure .frame{aspect-ratio:3/4;background:var(--bone)}
+figure.wide .frame{aspect-ratio:4/3}
+figure figcaption{padding:var(--s12) 0 0}
+.bw img{filter:grayscale(1) contrast(1.06)}
+.meta{font-family:var(--mono);font-size:13px;line-height:1.15}
+
+/* full bleed */
+.bleed .frame{aspect-ratio:auto;width:100%;height:70vh;min-height:360px}
+.bleed figcaption{padding:var(--s18) var(--s24) 0;max-width:60ch}
+
+/* brand index */
+.index{columns:4;column-gap:var(--s36)}
+.index a{display:block;padding:var(--s6) 0;text-decoration:none}
+.index a:hover{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:860px){.index{columns:2}}
+
+/* two column text */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--s60);align-items:start}
+@media (max-width:860px){.split{grid-template-columns:1fr;gap:var(--s30)}}
+dl{display:grid;grid-template-columns:auto 1fr;gap:var(--s6) var(--s24);margin:var(--s18) 0 0}
+dt{opacity:.6}
+
+/* newsletter */
+.sub{display:flex;align-items:flex-end;gap:var(--s12);max-width:420px;margin-top:var(--s24)}
+.sub input{flex:1;font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:1px 2px}
+.sub input::placeholder{color:#8c8888}
+.sub input:focus{outline:none;border-bottom-width:2px}
+.sub button{font:inherit;font-size:12px;letter-spacing:.36px;text-transform:uppercase;background:none;border:0;border-radius:0;color:var(--ink);padding:var(--s6) var(--s12);cursor:pointer}
+.sub button:hover{color:var(--mist)}
+
+footer{padding:var(--s60) var(--s24) var(--s90);border-top:1px solid var(--bone)}
+.foot{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s24)}
+@media (max-width:760px){.foot{grid-template-columns:1fr 1fr}}
+.foot a{display:block;padding:var(--s6) 0;text-decoration:none}
+.foot a:hover{text-decoration:underline;text-underline-offset:3px}
+
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--paper);border-top:1px solid var(--bone);padding:var(--s12) var(--s24);display:flex;justify-content:center;align-items:center}
+.bar .x{position:absolute;right:var(--s18);font-size:14px;background:none;border:0;color:var(--ink);cursor:pointer;padding:5px 8px;line-height:1}
+</style>
+</head>
+<body>
+
+<div class="draft cap">Richtung A · Galerie — Entwurf von Lizza, keine Live-Seite · <a href="../index.html">alle Richtungen</a></div>
+
+<div class="ann u">
+  <span>Wiedereröffnung in Vorbereitung</span>
+  <span>Termine nach Vereinbarung · 06221 905900</span>
+  <span>Newsletter abonnieren</span>
+</div>
+
+<header>
+  <a class="brand" href="#">Kampmann</a>
+  <nav>
+    <ul class="u">
+      <li><a href="#marken">Marken</a></li>
+      <li><a href="#anlaesse">Anlässe</a></li>
+      <li><a href="#mass">Maß</a></li>
+      <li><a href="#haus">Haus</a></li>
+      <li><a href="#journal">Journal</a></li>
+    </ul>
+  </nav>
+  <div class="util u">
+    <a href="#termin">Termin</a>
+    <a href="#newsletter">Newsletter</a>
+    <a href="tel:+496221905900">Kontakt</a>
+  </div>
+</header>
+
+<section class="hero" style="padding-top:var(--s18)">
+  <figure>
+    <div class="frame"><img src="https://cdn.shopify.com/s/files/1/0989/1738/4527/files/N13Z2EFA0128001506R_0890_1_4f23832c-e788-4725-9e98-61e33a130bce.jpg?width=2000" alt="Anzug aus leichtem Flanell, am Model"></div>
+    <figcaption>
+      <p class="lede" style="margin:0">Klassisch-sportive Herrenkleidung, Schuhwerk und Anlasskleidung. Seit den 1970er-Jahren in der Sofienstraße, Heidelberg.</p>
+      <p class="cap" style="margin:0"><a href="#newsletter">Zur Wiedereröffnung benachrichtigt werden</a></p>
+    </figcaption>
+  </figure>
+</section>
+
+<section class="pad">
+  <p class="u" style="margin:0 0 var(--s30)">Ausgewählt · Herbst / Winter</p>
+  <div class="grid3">
+    <figure class="bw">
+      <div class="frame"><img src="https://cdn.shopify.com/s/files/1/0880/4846/8303/files/26IJUJUM_QS004069P3621R1100D_1.jpg?width=1200" alt="Jacob Cohën Bard Jeans"></div>
+      <figcaption>
+        <p class="cap" style="margin:0 0 4px">Jacob Cohën — Bard, Super-Stretch-Denim</p>
+        <p class="cap" style="margin:0"><a href="marke.html">Jacob Cohën bei Kampmann</a></p>
+      </figcaption>
+    </figure>
+    <figure class="bw">
+      <div class="frame"><img src="https://cdn.shopify.com/s/files/1/0989/1738/4527/files/N13Z2EFA0128001506R_0890_5_9667d41b-91e1-41d7-b438-8f73be057076.jpg?width=1200" alt="Sakko aus leichtem Flanell"></div>
+      <figcaption>
+        <p class="cap" style="margin:0 0 4px">Boglioli — K-Jacket, ungefüttert</p>
+        <p class="cap" style="margin:0"><a href="#">Boglioli bei Kampmann</a></p>
+      </figcaption>
+    </figure>
+    <figure class="bw">
+      <div class="frame"><img src="https://cdn.shopify.com/s/files/1/0989/1738/4527/files/OCP507FB590100180_0570_5.jpg?width=1200" alt="Veloursleder im Detail"></div>
+      <figcaption>
+        <p class="cap" style="margin:0 0 4px">Veloursleder, wattiert — Detail</p>
+        <p class="cap" style="margin:0"><a href="#marken">Alle Marken ansehen</a></p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="bleed" style="padding-top:var(--s30)">
+  <figure>
+    <div class="frame"><img src="https://cdn.shopify.com/s/files/1/0989/1738/4527/files/OC0147FB472300180_0565_3_8dc5bc6f-36d1-4ab1-b775-ae3df07a18a3.jpg?width=2000" alt="Bomberjacke aus Flanell, am Model"></div>
+    <figcaption>
+      <p style="margin:0 0 var(--s6)">Die neue Saison kommt zuerst in die Beratung: Wir legen Ihre Größen zurecht, Sie kommen zum Termin.</p>
+      <p class="cap" style="margin:0"><a href="#termin">Termin vereinbaren</a></p>
+    </figcaption>
+  </figure>
+</section>
+
+<section class="pad" id="marken">
+  <h2 style="margin-bottom:var(--s30)">Marken im Haus</h2>
+  <div class="index cap">
+    <a href="#">04651</a><a href="#">7 For All Mankind</a><a href="#">Altea</a><a href="#">Baldessarini</a><a href="#">Boglioli</a><a href="#">C.P. Company</a><a href="#">Dondup</a><a href="#">Doucal’s</a><a href="#">Eduard Dressler</a><a href="#">Eleventy</a><a href="#">Falke</a><a href="#">Fay</a><a href="#">Fedeli</a><a href="#">Frauenschuh</a><a href="#">Gimo’s</a><a href="#">Gran Sasso</a><a href="#">Hannes Roether</a><a href="#">Harris Wharf</a><a href="#">Herno</a><a href="#">Hiltl</a><a href="#">Hogan</a><a href="marke.html">Jacob Cohën</a><a href="#">Kiefermann</a><a href="#">Ludwig Reiter</a><a href="#">Mason’s</a><a href="#">Myths</a><a href="#">Officine Creative</a><a href="#">Parajumpers</a><a href="#">Phil Petter</a><a href="#">Prime Shoes</a><a href="#">Ragman</a><a href="#">Roberto Collina</a><a href="#">Santoni</a><a href="#">Scabal</a><a href="#">Seldom</a><a href="#">Stefan Brandt</a><a href="#">Stenströms</a><a href="#">Tiger of Sweden</a><a href="#">Tod’s</a><a href="#">Tombolini</a><a href="#">Van Laack</a><a href="#">Wilvorst</a><a href="#">Windsor</a><a href="#">Zimmerli</a>
+  </div>
+  <p class="cap" style="margin-top:var(--s30)">Jede Marke bekommt eine eigene Seite mit Bildern, Passformen und Verfügbarkeit im Haus — für Menschen, die die Marke suchen und einen Händler in der Nähe wollen.</p>
+</section>
+
+<section class="pad" id="anlaesse">
+  <p class="u" style="margin:0 0 var(--s30)">Anlässe</p>
+  <div class="grid2">
+    <figure class="wide">
+      <div class="frame"><img src="https://cdn.shopify.com/s/files/1/0989/1738/4527/files/N4302EFB300500150R_0480_2.jpg?width=1600" alt="Anzug mit Muster, am Model"></div>
+      <figcaption>
+        <h3 style="margin:0 0 4px">Hochzeit</h3>
+        <p class="cap" style="margin:0 0 4px">Vom ersten Termin bis zur letzten Anprobe — Bräutigam, Trauzeugen, Väter.</p>
+        <p class="cap" style="margin:0"><a href="#">Hochzeitskleidung</a></p>
+      </figcaption>
+    </figure>
+    <figure class="wide">
+      <div class="frame"><img src="https://cdn.shopify.com/s/files/1/0989/1738/4527/files/N13Z2EFA0128001506R_0890_3_cd7008bc-5e48-4bb8-93b7-91d07062d68e.jpg?width=1600" alt="Anzug im Business-Look, am Model"></div>
+      <figcaption>
+        <h3 style="margin:0 0 4px">Business</h3>
+        <p class="cap" style="margin:0 0 4px">Anzug, Sakko, Hemd und Schuh — aufeinander abgestimmt, in einem Termin.</p>
+        <p class="cap" style="margin:0"><a href="#">Anlasskleidung</a></p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="pad" id="mass">
+  <div class="split">
+    <div>
+      <h2 style="margin-bottom:var(--s18)">Kleidung nach Maß</h2>
+      <p style="margin:0 0 var(--s18);max-width:46ch">Anzüge, Sakkos und Hemden nach Maß: Wir nehmen Maß, wählen gemeinsam Stoff und Details, und ändern nach der ersten Anprobe so lange, bis es sitzt.</p>
+      <p class="meta" style="margin:0 0 var(--s18)">Sofienstraße 25 · 69115 Heidelberg</p>
+      <p class="cap" style="margin:0"><a href="#termin">Maßtermin anfragen</a></p>
+    </div>
+    <figure class="bw">
+      <div class="frame" style="aspect-ratio:4/3"><img src="https://cdn.shopify.com/s/files/1/0989/1738/4527/files/N4302EFB300500150R_0480_5.jpg?width=1400" alt="Stoff und Knöpfe im Detail"></div>
+      <figcaption><p class="cap" style="margin:0">Schurwolle und Kaschmir, Knopfleiste im Detail</p></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="pad" id="haus" style="background:var(--bone)">
+  <div class="split">
+    <div>
+      <h2 style="margin-bottom:var(--s18)">Das Haus</h2>
+      <p style="margin:0;max-width:46ch">Nach dem Brand im August bauen wir das Geschäft neu auf. Bis zur Wiedereröffnung beraten wir Sie nach Vereinbarung — rufen Sie uns an, wir nehmen uns Zeit.</p>
+      <dl class="cap">
+        <dt>Adresse</dt><dd style="margin:0">Sofienstraße 25, 69115 Heidelberg</dd>
+        <dt>Telefon</dt><dd style="margin:0"><a href="tel:+496221905900">06221 905900</a></dd>
+        <dt>Öffnungszeiten</dt><dd style="margin:0">Mo–Fr 10–19 Uhr · Sa 10–18 Uhr</dd>
+        <dt>Status</dt><dd style="margin:0">Vorübergehend geschlossen · Termine nach Vereinbarung</dd>
+      </dl>
+      <p class="cap" style="margin-top:var(--s24)" id="termin"><a href="tel:+496221905900">Anrufen und Termin vereinbaren</a></p>
+    </div>
+    <div id="newsletter">
+      <h3 style="margin:0 0 var(--s12)">Wiedereröffnung</h3>
+      <p class="cap" style="margin:0;max-width:44ch">Wir schreiben Ihnen, sobald das Datum steht — dazu ein kurzer Blick in den Umbau und in die neue Saison.</p>
+      <form class="sub" onsubmit="return false">
+        <input type="email" placeholder="ihre@email.de" aria-label="E-Mail-Adresse">
+        <button type="submit">Eintragen</button>
+      </form>
+      <p class="cap" style="margin-top:var(--s12);opacity:.6">Abmeldung jederzeit über den Link in jeder E-Mail.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="journal">
+  <p class="u" style="margin:0 0 var(--s30)">Journal</p>
+  <div class="grid3">
+    <figure class="wide">
+      <div class="frame"><img src="https://cdn.shopify.com/s/files/1/0989/1738/4527/files/OCP507FB590100180_0570_4_96ea09cc-f1c2-4f87-b2da-8591b145edd0.jpg?width=1200" alt="Bomberjacke und Chino, am Model"></div>
+      <figcaption><p class="cap" style="margin:0"><a href="#">Was der Mantel im November können muss</a></p></figcaption>
+    </figure>
+    <figure class="wide">
+      <div class="frame"><img src="https://cdn.shopify.com/s/files/1/0880/4846/8303/files/26IJUJUM_QS004069P3621R1100D_3.jpg?width=1200" alt="Jeans zum Sakko, am Model"></div>
+      <figcaption><p class="cap" style="margin:0"><a href="#">Jeans zum Sakko — und wann es funktioniert</a></p></figcaption>
+    </figure>
+    <figure class="wide bw">
+      <div class="frame"><img src="https://cdn.shopify.com/s/files/1/0880/4846/8303/files/26IJUJUM_QS004069P3621R1100D_2.jpg?width=1200" alt="Lederpatch im Detail"></div>
+      <figcaption><p class="cap" style="margin:0"><a href="#">Woran man gute Verarbeitung erkennt</a></p></figcaption>
+    </figure>
+  </div>
+</section>
+
+<footer>
+  <div class="foot cap">
+    <div>
+      <p class="u" style="margin:0 0 var(--s12)">Haus</p>
+      <a href="#haus">Sofienstraße 25</a><a href="tel:+496221905900">06221 905900</a><a href="#termin">Termin</a>
+    </div>
+    <div>
+      <p class="u" style="margin:0 0 var(--s12)">Sortiment</p>
+      <a href="#marken">Marken</a><a href="#anlaesse">Anlässe</a><a href="#mass">Maß</a>
+    </div>
+    <div>
+      <p class="u" style="margin:0 0 var(--s12)">Folgen</p>
+      <a href="#">Instagram</a><a href="#">Facebook</a><a href="#">Pinterest</a>
+    </div>
+    <div>
+      <p class="u" style="margin:0 0 var(--s12)">Rechtliches</p>
+      <a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">AGB</a>
+    </div>
+  </div>
+  <p class="cap" style="margin-top:var(--s60);opacity:.6">Entwurf · Lizza für Kampmann Heidelberg · September 2026</p>
+</footer>
+
+<div class="bar u" id="bar">
+  <span>Wiedereröffnung: Jetzt für den Newsletter eintragen</span>
+  <button class="x" aria-label="Schließen" onclick="document.getElementById('bar').remove()">×</button>
+</div>
+
+</body>
+</html>
